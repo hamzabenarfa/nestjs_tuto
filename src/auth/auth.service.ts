@@ -13,7 +13,6 @@ export class AuthService {
   async login(loginDto: LoginDto) {
     const user = await this.userModel.findOne({ email: loginDto.email });
     if (!user) throw new ForbiddenException('User not found');
-
     const isPasswordValid = await argon.verify(
       user.password,
       loginDto.password,

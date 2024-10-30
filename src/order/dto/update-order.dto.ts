@@ -1,4 +1,4 @@
-import { IsArray, IsEnum,  IsOptional } from 'class-validator';
+import { IsArray, IsEnum, IsOptional } from 'class-validator';
 import { Types } from 'mongoose';
 import { OrderStatus } from 'src/enums/order.enum';
 

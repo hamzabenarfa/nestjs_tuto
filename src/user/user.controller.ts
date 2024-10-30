@@ -19,6 +19,11 @@ export class UserController {
     return this.userService.create(data);
   }
 
+  @Get('error')
+  throwError() {
+    throw new Error('This is an unexpected error');
+  }
+
   @Get()
   findAll() {
     return this.userService.findAll();
