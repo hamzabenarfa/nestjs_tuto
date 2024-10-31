@@ -1,20 +1,9 @@
-# Use Node.js as the base image
 FROM node:18
-
-# Set the working directory inside the container
 WORKDIR /app
-
-# Copy package.json and package-lock.json
 COPY package*.json ./
-
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the application code
+RUN npm install --production
 COPY . .
-
-# Expose the application's port
+RUN npm run build
 EXPOSE 3005
-
-# Run the application in development mode
-CMD ["npm", "run", "start:dev"]
+ENV NODE_ENV=production
+CMD ["npm", "run", "start:prod"]

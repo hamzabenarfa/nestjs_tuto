@@ -1,18 +1,28 @@
 version: '3.8'
 
 services:
-  nest-app:
-    build: .
-    ports:
-      - "3005:3005"
+  api:
+    image: sim-ecommerce-api:2
+    build:
+      context: .
+      dockerfile: Dockerfile
     environment:
-      - MONGODB_URI=mongodb://mongo:27017/e-commerce-db
+      - NODE_ENV=production
+    ports:
+      - "3030:3005"
+    networks:
+      - sim-ecommerce
     depends_on:
-      - mongo
+      - storage
 
-  mongo:
+  storage:
     image: mongo:latest
+    container_name: sim-ecommerce-mongo
     ports:
       - "27017:27017"
-    environment:
-      MONGO_INITDB_DATABASE: e-commerce-db
+    networks:
+      - sim-ecommerce
+
+networks:
+  sim-ecommerce:
+    driver: bridge
