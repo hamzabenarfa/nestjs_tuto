@@ -21,11 +21,7 @@ export class OrderService {
   }
 
   async findOne(id: string): Promise<Order> {
-    const order = await this.orderModel
-      .findById(id)
-      .populate('user')
-      .populate('products')
-      .exec();
+    const order = await this.orderModel.findById(id).populate('items').exec();
     if (!order) {
       throw new NotFoundException(`Order with ID ${id} not found`);
     }
@@ -35,8 +31,7 @@ export class OrderService {
   async update(id: string, updateOrderDto: UpdateOrderDto): Promise<Order> {
     const updatedOrder = await this.orderModel
       .findByIdAndUpdate(id, updateOrderDto, { new: true })
-      .populate('user')
-      .populate('products')
+      .populate('items')
       .exec();
 
     if (!updatedOrder) {

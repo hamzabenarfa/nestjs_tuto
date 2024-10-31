@@ -1,26 +1,35 @@
 import { Injectable } from '@nestjs/common';
 import { CreateOrderitemDto } from './dto/create-orderitem.dto';
 import { UpdateOrderitemDto } from './dto/update-orderitem.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { OrderItems } from './model/orderitems.model';
+import { Model } from 'mongoose';
 
 @Injectable()
 export class OrderitemsService {
+  constructor(
+    @InjectModel(OrderItems.name) private orderModel: Model<OrderItems>,
+  ) {}
   create(createOrderitemDto: CreateOrderitemDto) {
-    return 'This action adds a new orderitem';
+    const newOrderItem = new this.orderModel(createOrderitemDto);
+    return newOrderItem.save();
   }
 
   findAll() {
-    return `This action returns all orderitems`;
+    return this.orderModel.find().exec();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} orderitem`;
+  findOne(id: string) {
+    return this.orderModel.findById(id).exec();
   }
 
-  update(id: number, updateOrderitemDto: UpdateOrderitemDto) {
-    return `This action updates a #${id} orderitem`;
+  update(id: string, updateOrderitemDto: UpdateOrderitemDto) {
+    return this.orderModel.findByIdAndUpdate(id, updateOrderitemDto, {
+      new: true,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} orderitem`;
+  remove(id: string) {
+    return  this.orderModel.findByIdAndDelete(id).exec();
   }
 }

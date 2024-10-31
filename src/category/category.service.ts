@@ -29,6 +29,6 @@ export class CategoryService {
   }
 
   remove(id: string) {
-    return  this.userModel.findByIdAndDelete(id).exec();
+    return this.userModel.findByIdAndDelete(id).exec();
   }
 }
