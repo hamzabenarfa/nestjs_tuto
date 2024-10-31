@@ -11,7 +11,7 @@ export class Order {
   @Prop({ type: Types.ObjectId, ref: 'User', required: true })
   user: Types.ObjectId | User;
 
-  @Prop([{ type: Types.ObjectId, ref: 'Product', required: true }])
+  @Prop({ type: Types.ObjectId, ref: 'Product', required: true })
   products: Types.ObjectId[] | Product[];
 
   @Prop()

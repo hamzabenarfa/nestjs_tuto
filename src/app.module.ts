@@ -8,7 +8,7 @@ import { ErrorMiddleware } from './middleware/error.middleware';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb+srv://mohameddhaouedi:mohamed@cluster0.dsb09.mongodb.net/ecommerce-sim?retryWrites=true&w=majority&appName=Cluster0',
+      process.env.MONGODB_URI || 'mongodb://localhost:27017/nestdb',
     ),
     UserModule,
     ProductModule,
