@@ -1,16 +1,5 @@
-import { IsArray, IsEnum, IsOptional } from 'class-validator';
-import { Types } from 'mongoose';
-import { OrderStatus } from 'src/enums/order.enum';
 
-export class UpdateOrderDto {
-  @IsOptional()
-  user?: Types.ObjectId;
+import { CreateOrderDto } from './create-order.dto';
+import { PartialType } from '@nestjs/mapped-types';
 
-  @IsOptional()
-  @IsArray()
-  products?: Types.ObjectId[];
-
-  @IsOptional()
-  @IsEnum(OrderStatus)
-  status?: OrderStatus;
-}
+export class UpdateOrderDto extends PartialType(CreateOrderDto) {}

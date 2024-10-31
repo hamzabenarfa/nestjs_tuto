@@ -27,7 +27,7 @@ export class OrderitemsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.orderitemsService.findOne(+id);
+    return this.orderitemsService.findOne(id);
   }
 
   @Patch(':id')
@@ -35,11 +35,11 @@ export class OrderitemsController {
     @Param('id') id: string,
     @Body() updateOrderitemDto: UpdateOrderitemDto,
   ) {
-    return this.orderitemsService.update(+id, updateOrderitemDto);
+    return this.orderitemsService.update(id, updateOrderitemDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.orderitemsService.remove(+id);
+    return this.orderitemsService.remove(id);
   }
 }
