@@ -8,7 +8,7 @@ import { LoggerMiddleware } from './middleware/logger.middleware';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      process.env.MONGODB_URI || 'mongodb://localhost:27017/e-commerce-db',
+      'mongodb+srv://mohameddhaouedi:mohamed@cluster0.dsb09.mongodb.net/sim-ecommerce-mongo?retryWrites=true&w=majority&appName=Cluster0',
     ),
     ProductModule,
     OrderModule,
