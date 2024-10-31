@@ -1,19 +1,19 @@
 import { Module, MiddlewareConsumer, NestModule } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { UserModule } from './user/user.module';
 import { ProductModule } from './product/product.module';
 import { OrderModule } from './order/order.module';
-import { AuthModule } from './auth/auth.module';
 import { ErrorMiddleware } from './middleware/error.middleware';
+import { OrderitemsModule } from './order-items/orderitems.module';
+import { CategoryModule } from './category/category.module';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      process.env.MONGODB_URI || 'mongodb://localhost:27017/nestdb',
+      process.env.MONGODB_URI || 'mongodb://localhost:27017/e-commerce-db',
     ),
-    UserModule,
     ProductModule,
     OrderModule,
-    AuthModule,
+    OrderitemsModule,
+    CategoryModule,
   ],
   controllers: [],
   providers: [],

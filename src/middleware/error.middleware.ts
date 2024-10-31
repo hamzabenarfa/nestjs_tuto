@@ -5,10 +5,10 @@ import { Request, Response, NextFunction } from 'express';
 export class ErrorMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     try {
-      console.log("hi")
+      console.log('hi');
       next();
     } catch (error) {
-      console.log("🚀 ~ ErrorMiddleware ~ use ~ error:", error)
+      console.log('🚀 ~ ErrorMiddleware ~ use ~ error:', error);
       if (error instanceof HttpException) {
         res.status(error.getStatus()).json({
           statusCode: error.getStatus(),
